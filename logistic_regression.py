@@ -31,7 +31,11 @@ df = pd.read_csv("insurance_data.csv")
 
 st.subheader("Dataset")
 st.dataframe(df)
-
+# -----------------------------------
+# Prepare Data
+# -----------------------------------
+X = df[['age']]
+y = df['bought_insurance']
 # -----------------------------------
 # Train Model
 # -----------------------------------
