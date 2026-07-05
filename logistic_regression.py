@@ -10,6 +10,8 @@ Original file is located at
 import streamlit as st
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+
 # -----------------------------------
 # Page Configuration
 # -----------------------------------
@@ -19,8 +21,8 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("🏠 House Insurance")
-st.write("Predict house price using Logistic  Regression")
+st.title("🏠  Insurance  prediction")
+st.write("Predict wether a person is likely to buy insurance based on age using Logistic  Regression")
 
 # -----------------------------------
 # Load Dataset
@@ -33,10 +35,15 @@ st.dataframe(df)
 # -----------------------------------
 # Train Model
 # -----------------------------------
-X_train, X_test, y_train, y_test = train_test_split(df[['bought insurance']],df.bought_insurance,train_size=0.8)
-X = df.drop("insurance", axis=1)
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    train_size=0.8,
+    random_state=42
+)
 model = LogisticRegression()
 model.fit(X_train, y_train)
+
 
 # -----------------------------------
 # User Input
@@ -57,8 +64,6 @@ age = st.number_input(
 if st.button("Predict Insurance"):
 
     prediction = model.predict([[age]])
-
-    st.success(f"Predicted Price: ₹ {prediction[0]:,.2f}")
     
     if prediction[0] == 1:
       st.success("✅ The person is likely to buy insurance.")
