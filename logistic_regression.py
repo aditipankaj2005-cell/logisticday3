@@ -61,9 +61,9 @@ if st.button("Predict Insurance"):
     st.success(f"Predicted Price: ₹ {prediction[0]:,.2f}")
     
     if prediction[0] == 1:
-    st.success("✅ The person is likely to buy insurance.")
-else:
-    st.error("❌ The person is unlikely to buy insurance.")
+      st.success("✅ The person is likely to buy insurance.")
+    else:
+     st.error("❌ The person is unlikely to buy insurance.")
 
 # -----------------------------------
 # Model Information
