@@ -34,7 +34,7 @@ st.dataframe(df)
 # -----------------------------------
 # Train Model
 # -----------------------------------
-X_train, X_test, y_train, y_test = train_test_split(df[['age']],df.bought_insurance,train_size=0.8)
+X_train, X_test, y_train, y_test = train_test_split(df[['insurance']],df.bought_insurance,train_size=0.8)
 X = df.drop("price", axis=1)
 model = LogisticRegression()
 model.fit(X_train, y_train)
