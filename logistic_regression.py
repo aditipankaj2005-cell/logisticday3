@@ -9,8 +9,7 @@ Original file is located at
 
 import streamlit as st
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
-
+from sklearn.model_selection import train_test_split
 # -----------------------------------
 # Page Configuration
 # -----------------------------------
@@ -35,7 +34,7 @@ st.dataframe(df)
 # Train Model
 # -----------------------------------
 X_train, X_test, y_train, y_test = train_test_split(df[['insurance']],df.bought_insurance,train_size=0.8)
-X = df.drop("price", axis=1)
+X = df.drop("insurance", axis=1)
 model = LogisticRegression()
 model.fit(X_train, y_train)
 
@@ -60,6 +59,11 @@ if st.button("Predict Insurance"):
     prediction = model.predict([[age]])
 
     st.success(f"Predicted Price: ₹ {prediction[0]:,.2f}")
+    
+    if prediction[0] == 1:
+    st.success("✅ The person is likely to buy insurance.")
+else:
+    st.error("❌ The person is unlikely to buy insurance.")
 
 # -----------------------------------
 # Model Information
