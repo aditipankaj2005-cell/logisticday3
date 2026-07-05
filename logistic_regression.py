@@ -26,7 +26,7 @@ st.write("Predict house price using Logistic  Regression")
 # -----------------------------------
 # Load Dataset
 # -----------------------------------
-df = pd.read_csv("/content/insurance_data.csv")
+df = pd.read_csv("insurance_data.csv")
 
 st.subheader("Dataset")
 st.dataframe(df)
